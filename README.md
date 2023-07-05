@@ -1,8 +1,9 @@
-🐦 ingo: A Chrome `English Check` tool powered by ChatGPT
+🐦 ingo: A Chrome `English Check` extension powered by ChatGPT
 ===
+
 </br>
 <center>
-    <img src="./assets/app-icon.png" width="50%" height="50%" />
+    <img src="./assets/app-icon.png" width="25%" height="25%" />
 </center>
 </br>
 
@@ -10,24 +11,24 @@
 
 - Select English text on the page.
 - Execute it from the context menu.
-- It corrects the selected text and displays it in a pop-up.
+- It corrects the selected text in English and displays it in a pop-up.
 
 ## How to use
 
-- `git clone`
+- `git clone https://github.com/XinyueZ/english-check-chrome-extension.git`
 - Open page: `chrome://extensions/`
-    - ![chrome://extensions/](./assets/open-extension-page.png)
+    - <img src="./assets/open-extension-page.png" width="50%" height="50%" alt="chrome://extensions/" />
 - Enable `Developer mode` (top right)  and `load unpacked` (top left)
-    - ![enable-developer-mode](./assets/load-unpacked.png)
-    - `Repo root / src`
-        - ![load package](./assets/load-package.png)
+    - <img src="./assets/load-unpacked.png" width="50%" height="50%" alt="enable-developer-mode" />
+    - `root/src`
+        - <img src="./assets/load-package.png" width="50%" height="50%" alt="load-package" />
 - After installation, you see like this
-    - ![installed](./assets/after-install.png)
+    - <img src="./assets/after-install.png" width="50%" height="50%" alt="installed" />
 - Enter the API key of [OpenAI]:
-    - ![menu](./assets/ext-menu.png)
-    - ![enter-api-key](./assets/apikey.png)
+    - <img src="./assets/ext-menu.png" width="50%" height="50%" alt="menu" />
+    - <img src="./assets/apikey.png" width="50%" height="50%" alt="enter-api-key" />
 
 
 ## License (Apache-2.0)
 
-[LICENSE](./LICENSE)
+[LICENSE](./LICENSE) 
