@@ -92,7 +92,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     dialog.style.maxWidth = "80%";
                     dialog.style.maxHeight = "80%";
                     dialog.style.overflow = "auto";
-
+                    dialog.style.color = "black";
+                    
                     // Set the content of the dialog
                     dialog.textContent = content;
 
