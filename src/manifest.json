@@ -1,0 +1,41 @@
+{
+    "manifest_version": 3,
+    "name": "English Check",
+    "description": "This extension checks English grammar using OpenAI's GPT-3.",
+    "version": "1.0",
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "app-icon.png"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "permissions": [
+        "contextMenus",
+        "activeTab",
+        "storage"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "host_permissions": [
+        "https://api.openai.com/*"
+    ],
+    "options_page": "options.html",
+    "icons": {
+        "128": "app-icon.png"
+    }
+}
