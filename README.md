@@ -2,10 +2,12 @@
 ===
 
 </br>
+<div>
 <center>
     <img src="./assets/app-icon.png" width="25%" height="25%" />
 </center>
 </br>
+</div>
 
 ## What is this?
 
