@@ -41,7 +41,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     messages: [
                         {
                             role: "system",
-                            content: "English syntax, gramma check on the content inside <cksrc>....</cksrc> and update if needed. Answer me the result directly without any quotes (avoid giving me like: The content inside <cksrc> seems to be accurate ......). If the content is OK, then return the origin content. Note: whatever happens, don't show <cksrc> or </cksrc> in the response: " + "<cksrc>" + request.selectionText + "</cksrc>"
+                            content: "English syntax, gramma check, update it if needed, otherwise give me the origin text(response with correct sentence only):\n\n" + request.selectionText
                         }
                     ]
                 })
