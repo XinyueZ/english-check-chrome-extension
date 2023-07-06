@@ -6,7 +6,8 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "app-icon.png"
+                "app-icon.png",
+                "copypaste-icon.png"
             ],
             "matches": [
                 "<all_urls>"
@@ -14,10 +15,12 @@
         }
     ],
     "permissions": [
+        "clipboardWrite",
+        "notifications",
         "contextMenus",
         "activeTab",
         "storage"
-    ],
+],
     "background": {
         "service_worker": "background.js"
     },

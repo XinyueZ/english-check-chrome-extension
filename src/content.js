@@ -1,4 +1,11 @@
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    if (request.type === "shownotification") {
+        //TODO: not worked atm
+        chrome.notifications.create(notificationOptions, function (notificationId) {
+            console.log("Notification created with ID: " + notificationId);
+        });
+    }
+
     if (request.text === "englishCheck") {
         // Create a new div element for the loading indicator
         const loading = document.createElement("div");
@@ -86,11 +93,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     contentDiv.textContent = content;
 
                     // Create a new img element for the icon
-                    var icon = document.createElement("img");
-                    icon.src = chrome.runtime.getURL("app-icon.png"); // Replace with the path of your icon
-                    icon.width = 24;
-                    icon.height = 24;
-                    header.appendChild(icon);
+                    var appIcon = document.createElement("img");
+                    appIcon.src = chrome.runtime.getURL("app-icon.png"); // Replace with the path of your icon
+                    appIcon.width = 24;
+                    appIcon.height = 24;
+                    header.appendChild(appIcon);
 
                     // Create a space between the icon and the button
                     var spacer = document.createElement("div");
@@ -98,20 +105,27 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     header.appendChild(spacer);
 
                     // Create a new button element for the copy button
-                    var copyButton = document.createElement("button");
-                    copyButton.textContent = "Copy"; // Or set the icon of the button
+                    var copyButton = document.createElement("img");
+                    copyButton.src = chrome.runtime.getURL("copypaste-icon.png"); // Replace with the path of your icon
+                    copyButton.width = 48;
+                    copyButton.height = 48;
                     copyButton.addEventListener("click", function () {
                         // Use the Clipboard API to copy the text
                         navigator.clipboard.writeText(content).then(function () {
-                            // The copy operation was successful
-                            console.log("Copy to clipboard successful!");
+                            // The copy operation was successful 
+                            console.log("Copy to clipboard done!");
+                            var opt = {
+                                TemplateType: "basic",
+                                message: "Copied!",
+                            };
+                            //TODO: not worked atm for notification for copy clipboard done.
+                            chrome.runtime.sendMessage({ type: "shownotification", opt: opt }, function () { });
                         }, function (err) {
                             // The copy operation failed
                             console.error("Copy to clipboard failed!", err);
                         });
                     });
                     header.appendChild(copyButton);
-
 
 
                     // Create a new div element for the content
