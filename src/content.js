@@ -2,14 +2,14 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.text === "englishCheck") {
         // Create a new div element for the loading indicator
         const loading = document.createElement("div");
-        const content = "Checking....";  
-        const goldenRatio = 1.618;  
-        const fontSize = 16;  
+        const content = "Checking....";
+        const goldenRatio = 1.618;
+        const fontSize = 16;
         const width = content.length * fontSize * goldenRatio;
         const height = width / goldenRatio;
         const backgroundColor = window.getComputedStyle(document.body).backgroundColor;
         const rgb = backgroundColor.match(/\d+/g);
-        const invertedColor = `rgb(${255 - rgb[0]}, ${255 - rgb[1]}, ${255 - rgb[2]})`;
+        const foregroundColor = `rgb(${255 - rgb[0]}, ${255 - rgb[1]}, ${255 - rgb[2]})`;
         loading.style.position = "fixed";
         loading.style.left = "50%";
         loading.style.top = "50%";
@@ -18,13 +18,13 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         loading.style.display = "flex";
         loading.style.flexDirection = "column";
         loading.style.alignItems = "center";
-        loading.style.justifyContent = "center"; 
-        loading.style.borderRadius = "50%"; 
+        loading.style.justifyContent = "center";
+        loading.style.borderRadius = "50%";
         loading.style.width = `${width}px`;
         loading.style.height = `${height}px`;
         loading.style.backgroundColor = backgroundColor;
         loading.textContent = "Checking....";
-        loading.style.color = invertedColor;
+        loading.style.color = foregroundColor;
 
         // Add the loading indicator to the body
         document.body.appendChild(loading);
@@ -69,7 +69,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
                     // Create a new div element for the header 
                     var header = document.createElement("div");
-                    header.style.backgroundColor = "white";
+                    header.style.backgroundColor = backgroundColor;
                     header.style.display = "flex";
                     header.style.alignItems = "center";
                     header.style.padding = "10px";
@@ -78,8 +78,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     header.style.justifyContent = "flex-start";
 
                     var contentDiv = document.createElement("div");
-                    contentDiv.style.backgroundColor = "white";
-                    contentDiv.style.color = "black";
+                    contentDiv.style.backgroundColor = backgroundColor;
+                    contentDiv.style.color = foregroundColor;
                     contentDiv.style.padding = "10px";
                     contentDiv.style.width = "100%"; // Set the width to 100%
                     contentDiv.style.overflow = "auto";
@@ -116,8 +116,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
                     // Create a new div element for the content
                     var contentDiv = document.createElement("div");
-                    contentDiv.style.backgroundColor = "white";
-                    contentDiv.style.color = "black";
+                    contentDiv.style.backgroundColor = backgroundColor;
+                    contentDiv.style.color = foregroundColor;
                     contentDiv.style.padding = "10px";
                     contentDiv.style.width = "100%"; // Set the width to 100%
                     contentDiv.style.overflow = "auto";
@@ -125,13 +125,13 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
                     // Create a new div element for the dialog
                     var dialog = document.createElement("div");
-                    dialog.style.backgroundColor = "white";
+                    dialog.style.backgroundColor = backgroundColor;
                     dialog.style.border = "1px solid black";
                     dialog.style.padding = "10px";
                     dialog.style.maxWidth = "80%";
                     dialog.style.maxHeight = "80%";
                     dialog.style.overflow = "auto";
-                    dialog.style.color = "black";
+                    dialog.style.color = foregroundColor;
 
                     dialog.appendChild(header);
                     dialog.appendChild(contentDiv);
