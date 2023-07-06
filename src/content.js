@@ -1,11 +1,4 @@
-document.addEventListener("mousedown", function (event) {
-    // Check if the right button was clicked
-    if (event.button == 2) {
-        // Store the mouse position in localStorage
-        localStorage.setItem("mouseX", event.pageX);
-        localStorage.setItem("mouseY", event.pageY);
-    }
-}, true);
+
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.text === "englishCheck") {
@@ -21,7 +14,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     messages: [
                         {
                             role: "system",
-                            content: request.selectionText
+                            content: "English syntax, gramma check on the content inside <cksrc>....</cksrc> and update if needed. Answer me the result directly without any quotes (avoid giving me like: The content inside <cksrc> seems to be accurate ......). If the content is OK, then return the origin content. Note: whatever happens, don't show <cksrc> or </cksrc> in the response: " + "<cksrc>" + request.selectionText + "</cksrc>"
                         }
                     ]
                 })
@@ -44,15 +37,23 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     modal.style.zIndex = "10000";
                     modal.style.flexDirection = "column"; // Add this line
 
-                    // Create a new div element for the header
+                    // Create a new div element for the header 
                     var header = document.createElement("div");
+                    header.style.backgroundColor = "white";
                     header.style.display = "flex";
-                    header.style.justifyContent = "flex-start"; 
                     header.style.alignItems = "center";
                     header.style.padding = "10px";
-                    header.style.backgroundColor = "white";
                     header.style.borderBottom = "1px solid black";
-                    header.style.width = "80%"; // Make the header full width
+                    header.style.width = "100%"; // Set the width to 100%
+                    header.style.justifyContent = "flex-start";
+
+                    var contentDiv = document.createElement("div");
+                    contentDiv.style.backgroundColor = "white";
+                    contentDiv.style.color = "black";
+                    contentDiv.style.padding = "10px";
+                    contentDiv.style.width = "100%"; // Set the width to 100%
+                    contentDiv.style.overflow = "auto";
+                    contentDiv.textContent = content;
 
                     // Create a new img element for the icon
                     var icon = document.createElement("img");
@@ -81,8 +82,16 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     });
                     header.appendChild(copyButton);
 
-                    // Add header
-                    modal.appendChild(header);
+
+
+                    // Create a new div element for the content
+                    var contentDiv = document.createElement("div");
+                    contentDiv.style.backgroundColor = "white";
+                    contentDiv.style.color = "black";
+                    contentDiv.style.padding = "10px";
+                    contentDiv.style.width = "100%"; // Set the width to 100%
+                    contentDiv.style.overflow = "auto";
+                    contentDiv.textContent = content;
 
                     // Create a new div element for the dialog
                     var dialog = document.createElement("div");
@@ -93,9 +102,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     dialog.style.maxHeight = "80%";
                     dialog.style.overflow = "auto";
                     dialog.style.color = "black";
-                    
-                    // Set the content of the dialog
-                    dialog.textContent = content;
+
+                    dialog.appendChild(header);
+                    dialog.appendChild(contentDiv);
 
                     // Add the dialog to the modal
                     modal.appendChild(dialog);
