@@ -1,7 +1,34 @@
-
-
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.text === "englishCheck") {
+        // Create a new div element for the loading indicator
+        const loading = document.createElement("div");
+        const content = "Checking....";  
+        const goldenRatio = 1.618;  
+        const fontSize = 16;  
+        const width = content.length * fontSize * goldenRatio;
+        const height = width / goldenRatio;
+        const backgroundColor = window.getComputedStyle(document.body).backgroundColor;
+        const rgb = backgroundColor.match(/\d+/g);
+        const invertedColor = `rgb(${255 - rgb[0]}, ${255 - rgb[1]}, ${255 - rgb[2]})`;
+        loading.style.position = "fixed";
+        loading.style.left = "50%";
+        loading.style.top = "50%";
+        loading.style.transform = "translate(-50%, -50%)";
+        loading.style.zIndex = "10000";
+        loading.style.display = "flex";
+        loading.style.flexDirection = "column";
+        loading.style.alignItems = "center";
+        loading.style.justifyContent = "center"; 
+        loading.style.borderRadius = "50%"; 
+        loading.style.width = `${width}px`;
+        loading.style.height = `${height}px`;
+        loading.style.backgroundColor = backgroundColor;
+        loading.textContent = "Checking....";
+        loading.style.color = invertedColor;
+
+        // Add the loading indicator to the body
+        document.body.appendChild(loading);
+
         chrome.storage.sync.get("apiKey", function (data) {
             fetch("https://api.openai.com/v1/chat/completions", {
                 method: "POST",
@@ -21,6 +48,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
             })
                 .then(response => response.json())
                 .then(data => {
+                    // Remove the loading indicator from the body
+                    document.body.removeChild(loading);
+
                     var content = data.choices[0].message.content;
 
                     // Create a new div element for the modal

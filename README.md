@@ -29,7 +29,8 @@
 - Enter the API key of [OpenAI]:
     - <img src="./assets/ext-menu.png" width="50%" height="50%" alt="menu" />
     - <img src="./assets/apikey.png" width="50%" height="50%" alt="enter-api-key" />
-
+- Usage
+    - <img src="./assets/usage.png" width="50%" height="50%" alt="usage" />
 
 ## License (Apache-2.0)
 
