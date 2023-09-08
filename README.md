@@ -11,6 +11,7 @@
 
 ## What is this?
 
+- Most of codes were prompted and generated in ChatGPT :)
 - Select English text on the page.
 - Execute it from the context menu.
 - It corrects the selected text in English and displays it in a pop-up.
